@@ -5,7 +5,6 @@ on International Man's or Women's Day depending on the gender of the person.
 
 Unfortunately, it does not work as expected. 
 It does not send greetings at all.
-
 There are even more problems in the code, like performance and duplications.
 It's not the most beautiful one but similar to what happens sometimes in legacy software.
 
@@ -38,3 +37,6 @@ simpleUsersManager.sendGreeting(
 ```
 
 Let's fix it next.
+
+Taking advantage of Java 8 we could use better date implementation than `java.util.Date` so let's do it.
+
