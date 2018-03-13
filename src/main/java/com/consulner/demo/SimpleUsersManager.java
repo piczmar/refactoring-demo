@@ -11,15 +11,18 @@ import java.util.List;
 
 public class SimpleUsersManager {
 
+    protected static final String GREETING_MAN = "Happy Man's Day";
+    protected static final String GREETING_WOMAN = "Happy Women's Day";
+
     public void processUsers(List<String> users, LocalDate date) {
 
         for (String user : users) {
             boolean isMale = isMale(user);
 
             if (isMale && isMenDay(date)) {
-                sendGreeting(user, "Happy Man's Day");
+                sendGreeting(user, GREETING_MAN);
             } else if (!isMale && isWomenDay(date)) {
-                sendGreeting(user, "Happy Women's Day");
+                sendGreeting(user, GREETING_WOMAN);
             }
         }
 
@@ -50,7 +53,7 @@ public class SimpleUsersManager {
 
     // see International Women's Day: https://en.wikipedia.org/wiki/International_Women%27s_Day
     private boolean isWomenDay(LocalDate date) {
-        return date.getDayOfMonth() == 7 && date.getMonth() == Month.MARCH;
+        return date.getDayOfMonth() == 8 && date.getMonth() == Month.MARCH;
     }
 
     // see International Man's Day: https://en.wikipedia.org/wiki/International_Men%27s_Day
