@@ -8,6 +8,7 @@ import java.util.Arrays;
 
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 public class SimpleUsersManagerTest {
@@ -28,7 +29,7 @@ public class SimpleUsersManagerTest {
 
         managerSpy.processUsers(Arrays.asList(user), date);
 
-        verify(managerSpy).sendGreeting(user, "Happy Women's Day");
-
+        verify(managerSpy, times(1)).sendGreeting(user, "Happy Women's Day");
+        verify(managerSpy, times(1)).isMale(user);
     }
 }

@@ -40,3 +40,12 @@ Let's fix it next.
 
 Taking advantage of Java 8 we could use better date implementation than `java.util.Date` so let's do it.
 
+If we look at the `SimpleUsersManager.processUsers` we can still see that we call REST API twice.
+We can make it better.
+We will make test to fail again by checking exactly one invocation of the method like this:
+```
+ verify(managerSpy, times(1)).isMale(user);
+```
+
+
+
