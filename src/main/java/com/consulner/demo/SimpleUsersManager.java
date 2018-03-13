@@ -11,22 +11,22 @@ import java.util.List;
 public class SimpleUsersManager {
 
 
-    public void processUsers(List<String> users) {
+    public void processUsers(List<String> users, Date date) {
 
         for (String user : users) {
             // see International Man's Day: https://en.wikipedia.org/wiki/International_Men%27s_Day
-            if (isMale(user) && new Date().getDay() == 18 && new Date().getMonth() == 10) {
+            if (isMale(user) && date.getDay() == 18 && date.getMonth() == 10) {
                 sendGreeting(user, "Happy Man's Day");
             }
             // see International Women's Day: https://en.wikipedia.org/wiki/International_Women%27s_Day
-            if (!isMale(user) && new Date().getDay() == 7 && new Date().getMonth() == 2) {
+            if (!isMale(user) && date.getDay() == 7 && date.getMonth() == 2) {
                 sendGreeting(user, "Happy Women's Day");
             }
         }
 
     }
 
-    private boolean isMale(String user) {
+    protected boolean isMale(String user) {
         try {
             /**
              * Expected JSON like:
