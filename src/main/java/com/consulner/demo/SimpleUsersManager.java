@@ -16,11 +16,9 @@ public class SimpleUsersManager {
         for (String user : users) {
             boolean isMale = isMale(user);
 
-            if (isMale && date.getDayOfMonth() == 19 && date.getMonth() == Month.NOVEMBER) {
-                // see International Man's Day: https://en.wikipedia.org/wiki/International_Men%27s_Day
+            if (isMale && isMenDay(date)) {
                 sendGreeting(user, "Happy Man's Day");
-            } else if (!isMale && date.getDayOfMonth() == 8 && date.getMonth() == Month.MARCH) {
-                // see International Women's Day: https://en.wikipedia.org/wiki/International_Women%27s_Day
+            } else if (!isMale && isWomenDay(date)) {
                 sendGreeting(user, "Happy Women's Day");
             }
         }
@@ -48,5 +46,15 @@ public class SimpleUsersManager {
 
     protected void sendGreeting(String user, String greeting) {
         System.out.println(user + ", " + greeting + " !!!");
+    }
+
+    // see International Women's Day: https://en.wikipedia.org/wiki/International_Women%27s_Day
+    private boolean isWomenDay(LocalDate date) {
+        return date.getDayOfMonth() == 7 && date.getMonth() == Month.MARCH;
+    }
+
+    // see International Man's Day: https://en.wikipedia.org/wiki/International_Men%27s_Day
+    private boolean isMenDay(LocalDate date) {
+        return date.getDayOfMonth() == 19 && date.getMonth() == Month.NOVEMBER;
     }
 }

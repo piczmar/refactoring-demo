@@ -47,5 +47,12 @@ We will make test to fail again by checking exactly one invocation of the method
  verify(managerSpy, times(1)).isMale(user);
 ```
 
+Then we could make `SimpleUsersManager.processUsers` even more readable by adding methods:
+ - `isWomenDay`
+ - `isMenDay`
+ 
+ This is an example where having unit tests rocks, cause I will initially make a mistake when refactoring
+ and test will catch it.
+ 
 
 
