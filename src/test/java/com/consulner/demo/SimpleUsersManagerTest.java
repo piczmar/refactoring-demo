@@ -12,8 +12,8 @@ import java.util.Collection;
 import static com.consulner.demo.SimpleUsersManager.GREETING_MAN;
 import static com.consulner.demo.SimpleUsersManager.GREETING_WOMAN;
 import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
-import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
@@ -21,13 +21,16 @@ import static org.mockito.Mockito.verify;
 @RunWith(Parameterized.class)
 public class SimpleUsersManagerTest {
 
-    private final SimpleUsersManager manager = new SimpleUsersManager();
-    private final SimpleUsersManager managerSpy = spy(manager);
     private static final String ANY_NAME = "anyString";
+
+    private final GenderService genderService = mock(GenderService.class);
+    private final NotificationService notificationService = mock(NotificationService.class);
+    private final SimpleUsersManager manager = new SimpleUsersManager(genderService, notificationService);
 
     private final int year, month, day;
     private final boolean isMenDay, isWomenDay;
     private final boolean isMale;
+
 
     @Parameters(name =
             "{index}: isMale={0}, yyyy.M.d={1}.{2}.{3} => isMenDay={4}, isWomenDay={5}")
@@ -55,20 +58,20 @@ public class SimpleUsersManagerTest {
     @Test
     public void test() {
         LocalDate date = LocalDate.of(year, month, day);
-        doReturn(isMale).when(managerSpy).isMale(ANY_NAME);
+        doReturn(isMale).when(genderService).isMale(ANY_NAME);
 
-        managerSpy.processUsers(Arrays.asList(ANY_NAME), date);
+        manager.processUsers(Arrays.asList(ANY_NAME), date);
 
         if (isWomenDay) {
-            verify(managerSpy, times(1)).sendGreeting(ANY_NAME, GREETING_WOMAN);
-            verify(managerSpy, times(1)).isMale(ANY_NAME);
+            verify(notificationService, times(1)).sendGreeting(ANY_NAME, GREETING_WOMAN);
+            verify(genderService, times(1)).isMale(ANY_NAME);
         } else if (isMenDay) {
-            verify(managerSpy, times(1)).sendGreeting(ANY_NAME, GREETING_MAN);
-            verify(managerSpy, times(1)).isMale(ANY_NAME);
+            verify(notificationService, times(1)).sendGreeting(ANY_NAME, GREETING_MAN);
+            verify(genderService, times(1)).isMale(ANY_NAME);
         } else {
-            verify(managerSpy, never()).sendGreeting(ANY_NAME, GREETING_WOMAN);
-            verify(managerSpy, never()).sendGreeting(ANY_NAME, GREETING_MAN);
-            verify(managerSpy, times(1)).isMale(ANY_NAME);
+            verify(notificationService, never()).sendGreeting(ANY_NAME, GREETING_WOMAN);
+            verify(notificationService, never()).sendGreeting(ANY_NAME, GREETING_MAN);
+            verify(genderService, times(1)).isMale(ANY_NAME);
         }
     }
 

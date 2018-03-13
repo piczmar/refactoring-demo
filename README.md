@@ -56,6 +56,7 @@ Then we could make `SimpleUsersManager.processUsers` even more readable by addin
  
  As we have added more tests for men and women cases we see that they are similar.
  We could replace all of them with parametrized test.
-
-
-
+ 
+ Finally, as promised at the beginning, we will ensure single responsibility principle 
+ and get rid of spying by extracting `sendGreeting` and `isMale` to separate services, which can
+ be tested independently.
