@@ -54,5 +54,8 @@ Then we could make `SimpleUsersManager.processUsers` even more readable by addin
  This is an example where having unit tests rocks, cause I will initially make a mistake when refactoring
  and test will catch it.
  
+ As we have added more tests for men and women cases we see that they are similar.
+ We could replace all of them with parametrized test.
+
 
 
