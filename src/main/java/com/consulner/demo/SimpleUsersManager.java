@@ -14,12 +14,13 @@ public class SimpleUsersManager {
     public void processUsers(List<String> users, LocalDate date) {
 
         for (String user : users) {
-            // see International Man's Day: https://en.wikipedia.org/wiki/International_Men%27s_Day
-            if (isMale(user) && date.getDayOfMonth() == 19 && date.getMonth() == Month.NOVEMBER) {
+            boolean isMale = isMale(user);
+
+            if (isMale && date.getDayOfMonth() == 19 && date.getMonth() == Month.NOVEMBER) {
+                // see International Man's Day: https://en.wikipedia.org/wiki/International_Men%27s_Day
                 sendGreeting(user, "Happy Man's Day");
-            }
-            // see International Women's Day: https://en.wikipedia.org/wiki/International_Women%27s_Day
-            if (!isMale(user) && date.getDayOfMonth() == 8 && date.getMonth() == Month.MARCH) {
+            } else if (!isMale && date.getDayOfMonth() == 8 && date.getMonth() == Month.MARCH) {
+                // see International Women's Day: https://en.wikipedia.org/wiki/International_Women%27s_Day
                 sendGreeting(user, "Happy Women's Day");
             }
         }
