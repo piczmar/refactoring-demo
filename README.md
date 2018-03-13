@@ -1,5 +1,11 @@
 The purpose of this project is to explain how to make code testable.
 
+Please [check commits](https://github.com/piczmar/refactoring-demo/commits/master) one-by-one starting from the bottom.
+You can gain more “story-telling” feeling if you diff each subsequent commit with the previous one, 
+e.g.: [here](https://github.com/piczmar/refactoring-demo/commit/d4b703e9f1d8b1970ac1276add63aa5939dadd60?diff=split)
+ 
+
+
 This project is a simple application which is supposed to send greetings to users 
 on International Man's or Women's Day depending on the gender of the person.
 
