@@ -45,7 +45,7 @@ public class SimpleUsersManager {
         return true;
     }
 
-    private void sendGreeting(String user, String greeting) {
+    protected void sendGreeting(String user, String greeting) {
         System.out.println(user + ", " + greeting + " !!!");
     }
 }
